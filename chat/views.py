@@ -10,6 +10,14 @@ from django.core import serializers
 # Create your views here.
 @login_required(login_url='/login/')
 def index(request):
+  """_summary_
+
+  Args:
+      request (_type_): _description_
+
+  Returns:
+      _type_: _description_
+  """
   if request.method == 'POST':
     print('Received data ' + request.POST['textmessage'])
     myChat = Chat.objects.get(id=1)
@@ -41,3 +49,12 @@ def register_view(request):
       user = User.objects.create_user(username='john', email='jlennon@beatles.com', password='glass onion')
       return render(request, 'auth/login.html', {'wrongPassword': True, 'redirect': redirect})
   return render(request, 'auth/register.html', {'redirect': redirect})
+
+# TODO 
+# - An Telegram, whatsapp, Messenger orientieren
+# - Text rot anzeigen bei Fehler
+# - Text erst grau, nach erfolgreichen Request Text schwarz (oder ein Haken, dann zwei Haken, wie bei whatsapp)
+# - Login Button deaktiviert, wenn leer
+# - Ladeanimation
+# - App responsive 
+# - Dokumentation
