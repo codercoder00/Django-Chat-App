@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+import collections
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +28,7 @@ SECRET_KEY = 'django-insecure-_wfzb#v184-l%cmiiex3m9gyg3q=h!m_g6ko+bqd444q30&521
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+collections.Callable = collections.abc.Callable
 
 # Application definition
 
@@ -38,7 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'chat'
+    'chat',
+    'django_nose'
+]
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+NOSE_ARGS = [
+    '--cover-erase',
+    '--cover-package=django_chat_app', # Change `MY_APP` to your `app` name
 ]
 
 MIDDLEWARE = [
